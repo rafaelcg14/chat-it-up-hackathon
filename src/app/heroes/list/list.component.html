@@ -1,0 +1,15 @@
+<h3>List of Heroes</h3>
+
+<h4 *ngIf="removedHunter; else noRemovedHunter">Removed hunter: <small class="text-danger">{{ removedHunter }}</small></h4>
+<ng-template #noRemovedHunter>
+  <h4>No removed hunter</h4>
+</ng-template>
+
+
+<button *ngIf=" huntersNames.length > 0 " (click)="removeLastHunter()" class="btn btn-outline-danger">
+  Remove last hunter
+</button>
+
+<ul class="mt-2 list-group">
+  <li *ngFor="let name of huntersNames" class="list-group-item">{{ name }}</li>
+</ul>
