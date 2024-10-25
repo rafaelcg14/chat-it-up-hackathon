@@ -1,0 +1,64 @@
+.drag-drop-container {
+  border: 2px dashed #0078d4;
+  border-radius: 8px;
+  padding: 20px;
+  text-align: center;
+  color: #0078d4;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.drag-drop-container.dragging {
+  background-color: #e6f4ff;
+}
+
+.file-list {
+  margin: 15px 0;
+  max-height: 150px;
+  overflow-y: auto;
+}
+
+.file-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 12px;
+  background-color: #f9f9f9;
+  border-radius: 4px;
+  margin-bottom: 8px;
+  border: 1px solid #ddd;
+}
+
+.file-item button {
+  background: transparent;
+  border: none;
+  color: #ff5c5c;
+  cursor: pointer;
+}
+
+.file-item button:hover {
+  color: #fff;
+  background: #ff0000;
+}
+
+button {
+  background-color: #0078d4;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+/* Styles when the button is enabled */
+button:hover:not(:disabled) {
+  background-color: #005ea6;
+}
+
+/* Styles when the button is disabled */
+button:disabled {
+  background-color: #b0b0b0;
+  cursor: not-allowed;
+  opacity: 0.6;
+}

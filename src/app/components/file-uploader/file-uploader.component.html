@@ -1,0 +1,20 @@
+<div class="drag-drop-container"
+     [class.dragging]="isDragging"
+     (click)="fileInput.click()"
+     (dragover)="onDragOver($event)"
+     (dragleave)="onDragLeave($event)"
+     (drop)="onDrop($event)">
+  <input type="file" #fileInput multiple (change)="onFileSelected($event)" hidden>
+  <p>Drag and drop files here or <button type="button" (click)="fileInput.click()">Click to select files</button></p>
+  <p *ngIf="errorMessage" class="error-message">{{ errorMessage }}</p>
+</div>
+
+<div class="file-list">
+  <div *ngFor="let file of files; let i = index" class="file-item">
+    {{ file.name }}
+    <button type="button" (click)="removeFile(i)">Remove</button>
+  </div>
+</div>
+
+<button type="button" (click)="onUploadClick()" [disabled]="files.length === 0">Upload Files</button>
+<p *ngIf="uploadMessage">{{ uploadMessage }}</p>
