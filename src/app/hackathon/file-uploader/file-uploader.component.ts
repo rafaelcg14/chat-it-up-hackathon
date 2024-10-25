@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { Subject } from 'rxjs';
 
+import { FileUploadAzureService } from '../file-upload-azure.service';
+
 @Component({
   selector: 'app-file-uploader',
   templateUrl: './file-uploader.component.html',
@@ -8,16 +10,18 @@ import { Subject } from 'rxjs';
 })
 export class FileUploaderComponent {
 
-  isDragging = false;
-  files: File[] = [];
+  public isDragging = false;
+  public files: File[] = [];
+  public uploadMessage: string = '';
 
   private dragDropSubject = new Subject<File[]>();
 
-  constructor() {
+  constructor( private fileUploadService: FileUploadAzureService ) {
     // Subscribe to the dnd subject
     this.dragDropSubject.subscribe( (newFiles: File[]) => {
       this.files.push( ...newFiles );
     } );
+
   }
 
   // Handle drag-over event
@@ -32,24 +36,39 @@ export class FileUploaderComponent {
   }
 
   // Handle drop event
-  onDrop( event: DragEvent ) {
+  async onDrop( event: DragEvent ) {
     event.preventDefault();
     this.isDragging = false;
 
     const droppedFiles = Array.from( event.dataTransfer?.files || [] );
     this.addFiles( droppedFiles );
+    await this.uploadFiles();
   }
 
   // Handle file selection via input
-  onFileSelected( event: Event ) {
+  async onFileSelected( event: Event ) {
     const input = event.target as HTMLInputElement;
     const selectedFiles = Array.from( input.files || [] );
     this.addFiles( selectedFiles );
+    await this.uploadFiles();
   }
 
   // Add files to the list and emit through Subject
   private addFiles( files: File[] ) {
     this.dragDropSubject.next( files );
   }
+
+  // Upload files
+  private async uploadFiles() {
+    for ( const file of this.files ) {
+      try {
+        await this.fileUploadService.uploadFile( file );
+        console.log(`File uploaded: %{ file.name }`);
+      } catch (error) {
+        console.log(`Error uploading file: ${ file.name }`, error);
+      }
+    }
+  }
+
 
 }
