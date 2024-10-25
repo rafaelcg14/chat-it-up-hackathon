@@ -13,8 +13,8 @@ export class FileUploaderComponent {
   public isDragging = false;
   public files: File[] = [];
   public uploadMessage: string = '';
-
   private dragDropSubject = new Subject<File[]>();
+
 
   constructor( private fileUploadService: FileUploadAzureService ) {
     // Subscribe to the dnd subject
@@ -36,21 +36,19 @@ export class FileUploaderComponent {
   }
 
   // Handle drop event
-  async onDrop( event: DragEvent ) {
+  onDrop( event: DragEvent ) {
     event.preventDefault();
     this.isDragging = false;
 
     const droppedFiles = Array.from( event.dataTransfer?.files || [] );
     this.addFiles( droppedFiles );
-    await this.uploadFiles();
   }
 
   // Handle file selection via input
-  async onFileSelected( event: Event ) {
+  onFileSelected( event: Event ) {
     const input = event.target as HTMLInputElement;
     const selectedFiles = Array.from( input.files || [] );
     this.addFiles( selectedFiles );
-    await this.uploadFiles();
   }
 
   // Add files to the list and emit through Subject
@@ -58,16 +56,25 @@ export class FileUploaderComponent {
     this.dragDropSubject.next( files );
   }
 
-  // Upload files
-  private async uploadFiles() {
+  // Upload all files when the button is clicked
+  async uploadAllFiles() {
+    if ( this.files.length === 0 ) {
+      this.uploadMessage = 'No files selected for upload.';
+      return;
+    }
+
+    this.uploadMessage = 'Uploading...';
+
     for ( const file of this.files ) {
       try {
         await this.fileUploadService.uploadFile( file );
-        console.log(`File uploaded: %{ file.name }`);
+        console.log(`File uploaded: ${ file.name }`);
       } catch (error) {
         console.log(`Error uploading file: ${ file.name }`, error);
       }
     }
+
+    this.uploadMessage = 'Files uploaded successfully!';
   }
 
 

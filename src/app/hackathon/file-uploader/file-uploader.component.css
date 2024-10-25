@@ -1,24 +1,72 @@
-.dropzone {
-  width: 100%;
-  padding: 20px;
-  border: 2px dashed #ccc;
+/* Styling for the drag-and-drop area */
+.file-drop-zone {
+  border: 2px dashed #4a90e2;
   border-radius: 5px;
+  padding: 30px;
   text-align: center;
+  color: #999;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
   cursor: pointer;
-  position: relative;
-  transition: background-color 0.2s ease;
 }
 
-.dropzone.dragging {
-  background-color: #f0f0f0;
+.file-drop-zone.dragging {
+  background-color: #f0f8ff;
+  border-color: #007bff;
 }
 
+/* Hide the actual file input */
 input[type="file"] {
-  opacity: 0;
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
+  display: none;
+}
+
+/* File list styling */
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+ul li {
+  background-color: #f8f9fa;
+  margin: 5px 0;
+  padding: 10px;
+  border: 1px solid #e9ecef;
+  border-radius: 4px;
+}
+
+/* Button styling */
+button {
+  display: block;
+  margin: 0.75rem auto;
+  background-color: #007bff;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 5px;
   cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+button:disabled {
+  background-color: #c0c0c0;
+  cursor: not-allowed;
+}
+
+/* Styling for messages */
+p {
+  font-size: 14px;
+  color: #555;
+}
+
+p.uploading {
+  color: #28a745;
+}
+
+p.error {
+  color: #dc3545;
 }
