@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
 })
 export class HeroComponent {
 
-  public heroName: string = 'SlideGenius AI';
+  public heroName: string = 'Chat It Up!';
   public description: string = 'this is just a description for the hero name. Please, contact us if you want some help.';
 
 }

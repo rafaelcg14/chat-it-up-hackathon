@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Subject } from 'rxjs';
 
-import { FileUploadAzureService } from '../../services/file-upload-azure.service';
+import { FileUploadAzureService } from '../../../services/file-upload-azure.service';
 
 @Component({
   selector: 'app-file-uploader',
