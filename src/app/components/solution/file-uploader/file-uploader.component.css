@@ -6,6 +6,24 @@
   color: #0078d4;
   cursor: pointer;
   transition: background-color 0.3s;
+  min-height: 250px;
+  display: block;
+  align-content: center;
+}
+
+.upload-icon {
+  width: 3rem;
+}
+
+.drag-drop-text {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  align-items: center;
+}
+
+.drag-drop-select {
+  margin-top: 1rem;
 }
 
 .drag-drop-container.dragging {

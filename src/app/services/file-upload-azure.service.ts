@@ -1,30 +1,47 @@
 import { Injectable } from '@angular/core';
-import { BlobServiceClient } from '@azure/storage-blob';
-import { environment } from '../../environments/environment';
+import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import { lastValueFrom } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
 })
 export class FileUploadAzureService {
-  private blobServiceClient: BlobServiceClient;
-  private containerClient: any;
 
-  constructor() {
-    const azureConfig = environment.azureStorage;
+  private readonly backendUrl = 'http://localhost:8000/files/upload-files';
 
-    // Construct the URL for BlobServiceClient
-    const blobServiceURL = `https://${azureConfig.accountName}.blob.core.windows.net`;
+  constructor( private http: HttpClient ) {}
 
-    // If you're using a SAS token, append it after a '?' character
-    this.blobServiceClient = new BlobServiceClient(`${blobServiceURL}?${azureConfig.sasToken}`);
+  // Upload a single file to the backend
+  async uploadFile( file: File ): Promise<void> {
+    const formData = new FormData();
+    formData.append( 'files', file, file.name );
 
-    // Access the container client for file upload
-    this.containerClient = this.blobServiceClient.getContainerClient(azureConfig.containerName);
+    try {
+      await lastValueFrom(
+        this.http.post<void>( this.backendUrl, formData ).pipe(
+          catchError( this.handleError ),
+          map( () => {
+            console.log(`File ${file.name} uploaded successfully.`);
+          } )
+        )
+      );
+    } catch ( error ) {
+      console.error( `Error uploading file ${file.name}`, error );
+    }
   }
 
-  // Method to upload file to Azure Blob Storage
-  async uploadFile(file: File): Promise<void> {
-    const blockBlobClient = this.containerClient.getBlockBlobClient(file.name);
-    await blockBlobClient.uploadData(file);
+  // Error handler for debugging
+  private handleError( error: HttpErrorResponse ): never {
+    let errorMsg = 'An unknown error occurred!';
+    if ( error.error instanceof ErrorEvent ) {
+      errorMsg = `Error: ${ error.error.message }`;
+    } else {
+      errorMsg = `Server returned code: ${ error.status }, error message is: ${ error.message }`
+    }
+
+    console.error(errorMsg);
+    throw new Error(errorMsg);
   }
+
 }
