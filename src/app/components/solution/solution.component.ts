@@ -7,4 +7,10 @@ import { Component } from '@angular/core';
 })
 export class SolutionComponent {
 
+  selectedFeature: 'url' | 'dragDrop' | null = null;
+
+  selectFeature( feature: 'url' | 'dragDrop' ): void {
+    this.selectedFeature = feature;
+  }
+
 }

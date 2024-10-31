@@ -1,16 +1,34 @@
-<div class="main-container">
-  <h1>AI Services</h1>
-  <div class="solution-container">
-    <div class="left-section">
-      <p>Enter your YouTube link here:</p>
-      <url-form></url-form>
-      <p>Or</p>
-      <app-file-uploader></app-file-uploader>
-      <!-- <button class="upload-button">Upload to Azure</button> -->
-      <!-- <button class="results-button">Get Results</button> -->
-    </div>
-    <div class="right-section">
-      <app-chatbot></app-chatbot>
-    </div>
+<h1>AI Features</h1>
+<section class="features-section">
+  <div class="feature-card" (click)="selectFeature('url')">
+    <img class="card-icon" src="youtube-icon.svg" alt="YouTube icon">
+    <h3 class="card-title">Video URL Feature</h3>
+    <p class="card-description">You can get a full transcription from the YouTube videos by only submitting the url.</p>
+    <button class="btn-feature">Try now</button>
   </div>
-</div>
+
+  <div class="feature-card" (click)="selectFeature('dragDrop')">
+    <img class="card-icon" src="cloud-icon.svg" alt="Cloud icon">
+    <h3 class="card-title">File Upload Feature</h3>
+    <p class="card-description">Upload documents for indexing and search functionality</p>
+    <button class="btn-feature">Try now</button>
+  </div>
+</section>
+
+<!-- Dynamic display section -->
+<section *ngIf="selectedFeature" class="feature-display">
+  <div class="feature-content">
+    <ng-container *ngIf="selectedFeature === 'url'">
+      <h3 class="feature-title">Video URL</h3>
+      <url-form></url-form>
+    </ng-container>
+    <ng-container *ngIf="selectedFeature === 'dragDrop'">
+      <h3 class="feature-title">File Upload</h3>
+      <app-file-uploader></app-file-uploader>
+    </ng-container>
+  </div>
+
+  <div class="chatbot-content">
+    <app-chatbot></app-chatbot>
+  </div>
+</section>

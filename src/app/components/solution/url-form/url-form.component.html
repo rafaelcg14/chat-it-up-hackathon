@@ -1,4 +1,24 @@
+<div class="form-container">
+  <!-- <h2>YouTube Video Transcription</h2> -->
+  <form (ngSubmit)="onSubmit()">
+    <div class="input-group">
+      <input
+        type="text"
+        [(ngModel)]="videoUrl"
+        name="videoUrl"
+        placeholder="Enter YouTube video URL"
+        required
+        class="url-input"
+      />
+      <button type="submit" class="submit-btn">Transcribe</button>
+    </div>
+  </form>
 
-<form>
-  <input type="text" placeholder="Enter your url">
-</form>
+  <!-- Loader -->
+  <div *ngIf="loading" class="loader"></div>
+
+  <!-- Transcription download button -->
+  <div *ngIf="transcriptionAvailable" class="download-container">
+    <button (click)="downloadTranscription()" class="download-btn">Download Transcription</button>
+  </div>
+</div>
