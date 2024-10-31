@@ -1,15 +1,20 @@
-/* body, html {
-  height: 100%;
-  margin: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-} */
-
 * {
   margin: 0;
   padding: 0;
-  box-sizing: content-box;
+  box-sizing: border-box;
+  overflow-x: none;
 
-  font-family: sans-serif
+  font-family: 'Roboto', sans-serif, Arial;
+}
+
+:root {
+  --color-primary: #2244D9;
+  --color-secondary: #109ed6;
+  --color-aux: #4379DD;
+  --color-secondary-hover: #4c70b3;
+  --light-color-primary: #b0ccf7;
+  --x-light-color-primary: #d8e6fc;
+  --light-color-secondary: #e3f5fa;
+  --color-text-primary: #111;
+  --color-text-secondary: #fff;
 }

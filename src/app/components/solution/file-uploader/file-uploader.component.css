@@ -60,7 +60,8 @@
 }
 
 button {
-  background-color: #0078d4;
+  background-color: var(--color-aux);
+  letter-spacing: 1px;
   color: #fff;
   border: none;
   padding: 10px 20px;

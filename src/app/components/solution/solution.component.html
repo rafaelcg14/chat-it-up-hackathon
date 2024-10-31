@@ -1,34 +1,17 @@
-<h1>AI Features</h1>
-<section class="features-section">
-  <div class="feature-card" (click)="selectFeature('url')">
-    <img class="card-icon" src="youtube-icon.svg" alt="YouTube icon">
-    <h3 class="card-title">Video URL Feature</h3>
-    <p class="card-description">You can get a full transcription from the YouTube videos by only submitting the url.</p>
-    <button class="btn-feature">Try now</button>
-  </div>
-
-  <div class="feature-card" (click)="selectFeature('dragDrop')">
-    <img class="card-icon" src="cloud-icon.svg" alt="Cloud icon">
-    <h3 class="card-title">File Upload Feature</h3>
-    <p class="card-description">Upload documents for indexing and search functionality</p>
-    <button class="btn-feature">Try now</button>
-  </div>
-</section>
-
-<!-- Dynamic display section -->
-<section *ngIf="selectedFeature" class="feature-display">
-  <div class="feature-content">
-    <ng-container *ngIf="selectedFeature === 'url'">
-      <h3 class="feature-title">Video URL</h3>
+<div class="main-container" #targetSection>
+  <h1>AI Features</h1>
+  <p class="solution-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae, pariatur commodi. Ut consequatur, delectus eos culpa architecto, consectetur ipsum vitae accusantium dicta deleniti doloribus quo necessitatibus animi veritatis odio quasi!</p>
+  <div class="solution-container">
+    <div class="left-section">
+      <h3 class="feature-title">Video URL Feature</h3>
+      <p>Want to transcribe your YouTube URL? Below you have a form to insert the URL, and click to the Transcribe button to start the process.</p>
       <url-form></url-form>
-    </ng-container>
-    <ng-container *ngIf="selectedFeature === 'dragDrop'">
-      <h3 class="feature-title">File Upload</h3>
+      <h3 class="feature-title">File Upload Feature</h3>
       <app-file-uploader></app-file-uploader>
-    </ng-container>
+    </div>
+    <div class="right-section">
+      <h3 class="feature-chatbot-title">Interact with our chatbot</h3>
+      <app-chatbot></app-chatbot>
+    </div>
   </div>
-
-  <div class="chatbot-content">
-    <app-chatbot></app-chatbot>
-  </div>
-</section>
+</div>

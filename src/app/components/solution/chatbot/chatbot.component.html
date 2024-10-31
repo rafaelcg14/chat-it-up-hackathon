@@ -1,5 +1,5 @@
 <div class="chatbot-container">
-  <div class="chat-box">
+  <div class="chat-box" #messagesContainer>
     <div *ngFor="let message of messages" class="message-container">
       <!-- Bot Message -->
       <div *ngIf="!message.user" class="bot-message">

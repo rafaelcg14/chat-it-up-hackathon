@@ -1,8 +1,7 @@
 .footer {
-  background-color: #EBDCF9;
+  background-image: radial-gradient(circle, #0c0c3b, #080c33, #070a2b, #050823, #02061a);
   padding: 20px;
   text-align: center;
-  border-top: 1px solid #deccf0;
 }
 
 .footer-content {
@@ -20,14 +19,17 @@
 
 .footer-section h4 {
   font-size: 1.2em;
-  color: #333;
+  color: #fff;
   margin-bottom: 10px;
+  font-family: 'Poppins', sans-serif;
+  letter-spacing: 2px;
+  font-weight: 900;
 }
 
 .footer-section p,
 .footer-section ul,
 .footer-bottom p {
-  color: #666;
+  color: #ddd;
   font-size: 0.9em;
   margin: 5px 0;
 }
@@ -42,26 +44,33 @@
 
 .social-icons li {
   list-style-type: none;
+  margin-bottom: 0.25rem;
 }
 
 .social-icons span {
   display: inline;
-  margin: 0 5px;
+  margin: 0 0;
   width: 30px;
   height: 30px;
   text-decoration: none;
-  color: #666;
+  color: #ddd;
+  padding-right: 1rem;
+}
+
+.icons-container {
+  display: inline-flex;
+  gap: 0.5rem;
 }
 
 .social-icons img {
-  width: 1.5rem;
-  height: 1.5rem;
-  padding-right: 4px;
+  width: 1rem;
+  height: auto;
+  /* padding-right: 4px; */
   vertical-align: middle;
 }
 
 .footer-bottom {
   margin-top: 20px;
   font-size: 0.8em;
-  color: #999;
+  color: #555;
 }

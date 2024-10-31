@@ -1,16 +1,21 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, AfterViewInit, ViewChild } from '@angular/core';
+
+import { ScrollService } from '../../services/scroll.service';
 
 @Component({
   selector: 'app-solution',
   templateUrl: './solution.component.html',
   styleUrl: './solution.component.css'
 })
-export class SolutionComponent {
+export class SolutionComponent implements AfterViewInit {
 
-  selectedFeature: 'url' | 'dragDrop' | null = null;
+  @ViewChild('targetSection')
+  public targetSection!: ElementRef;
 
-  selectFeature( feature: 'url' | 'dragDrop' ): void {
-    this.selectedFeature = feature;
+  constructor( private scrollService: ScrollService ) {}
+
+  ngAfterViewInit(): void {
+    this.scrollService.setTargetElement( this.targetSection );
   }
 
 }

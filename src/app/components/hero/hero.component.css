@@ -4,7 +4,7 @@
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-image: url('../../../../public/Gradient.jpg');
+  background-image: url('../../../../public/Gradient-variant.jpg');
   background-size: cover;
   background-position: center;
   color: white;
@@ -20,6 +20,7 @@
   font-weight: bold;
   margin-bottom: 1rem;
   letter-spacing: 2px;
+  font-family: 'Poppins', sans-serif;
 }
 
 .hero-description {
@@ -30,9 +31,10 @@
 .hero-button {
   padding: 0.8rem 2rem;
   font-size: 1rem;
-  font-weight: bold;
+  font-weight: 700;
+  letter-spacing: 1px;
   color: white;
-  background: linear-gradient(90deg in oklab, #6C17E3, #A509D1);
+  background: linear-gradient(90deg in oklab, #152d96, #2752a1, #7994c7);
   border: none;
   border-radius: 8px;
   cursor: pointer;
@@ -40,5 +42,28 @@
 }
 
 .hero-button:hover {
-  background: linear-gradient(90deg in oklab, #640ddf, #720191);
+  background: linear-gradient(90deg in oklab, #091a64, #253d69, #889abe);
+}
+
+@media screen and (max-width: 900px) {
+  .hero-description {
+    padding-inline: 2rem;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .hero-description {
+    padding-inline: 4rem;
+  }
+}
+
+@media screen and (max-width: 510px) {
+  .hero-title{
+    font-size: 3.5rem;
+  }
+
+  .hero-description {
+    padding-inline: 2rem;
+    font-size: 1.25rem;
+  }
 }
