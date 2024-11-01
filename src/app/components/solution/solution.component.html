@@ -1,16 +1,26 @@
 <div class="main-container" #targetSection>
   <h1>AI Features</h1>
-  <p class="solution-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae, pariatur commodi. Ut consequatur, delectus eos culpa architecto, consectetur ipsum vitae accusantium dicta deleniti doloribus quo necessitatibus animi veritatis odio quasi!</p>
+  <!-- <p class="solution-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae, pariatur commodi. Ut consequatur, delectus eos culpa architecto, consectetur ipsum vitae accusantium dicta deleniti doloribus quo necessitatibus animi veritatis odio quasi!</p> -->
+  <div class="explaination">
+    <h4>How it Works?</h4>
+    <ol>
+      <li>Choose the feature you require <strong>(Video URL Feature or File Upload Feature)</strong>.</li>
+      <li>Submit or upload your <strong>url</strong> or <strong>file</strong>, and wait for the process to finish.</li>
+      <li>Once the process is finished, you may interact with our chatbot about the given information.</li>
+    </ol>
+  </div>
   <div class="solution-container">
     <div class="left-section">
       <h3 class="feature-title">Video URL Feature</h3>
-      <p>Want to transcribe your YouTube URL? Below you have a form to insert the URL, and click to the Transcribe button to start the process.</p>
+      <p>Insert your YouTube URL below:</p>
       <url-form></url-form>
       <h3 class="feature-title">File Upload Feature</h3>
+      <p>Upload your own documents.</p>
+      <p>(Allowed files: .pdf, .doc with max.size: 10 MB)</p>
       <app-file-uploader></app-file-uploader>
     </div>
     <div class="right-section">
-      <h3 class="feature-chatbot-title">Interact with our chatbot</h3>
+      <h3 class="feature-chatbot-title">Interact With Our Chatbot</h3>
       <app-chatbot></app-chatbot>
     </div>
   </div>

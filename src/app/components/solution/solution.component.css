@@ -28,7 +28,26 @@ h1 {
   margin-top: 1rem;
   padding: 1rem;
   border-radius: 8px;
-  text-align: center;
+  /* text-align: center; */
+}
+
+.explaination {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.explaination h4 {
+  color: var(--color-primary);
+  font-size: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.explaination li {
+  margin-bottom: 1rem;
+  margin-left: 1rem;
+  color: var(--color-text-primary);
 }
 
 .solution-container {
