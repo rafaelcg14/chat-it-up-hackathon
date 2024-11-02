@@ -14,11 +14,13 @@ export class FileUploaderComponent {
   public files: File[] = [];
   public uploadMessage: string = '';
   public errorMessage: string = '';
+  public isLoading: boolean = false;
   private dragDropSubject = new Subject<File[]>();
-  private readonly MAX_FILES = 5;
+  private readonly MAX_FILES = 3;
   private readonly ALLOWED_TYPES = [ 'text/plain', 'application/pdf', 'audio/mpeg', 'audio/wav', 'audio/x-m4a' ];
   private readonly COOLDOWN_HOURS = 6;
-  private readonly IS_DEV_MODE = true; // Set to 'false' in production
+  private readonly IS_DEV_MODE = false; // Set to 'false' in production
+  private readonly MAX_FILE_SIZE = 3 * 1024 * 1024;
 
   constructor( private fileUploadService: FileUploadAzureService ) {
     this.dragDropSubject.subscribe( (newFiles: File[]) => {
@@ -91,7 +93,15 @@ export class FileUploaderComponent {
   // Upload all files when the button is clicked
   async onUploadClick() {
     if ( this.files.length > 0 && ( this.IS_DEV_MODE || this.canUpload() ) ) {
+      this.isLoading = true;
+
       for ( const file of this.files ) {
+        if (file.size > this.MAX_FILE_SIZE) {
+          console.log(`File ${file.name} exceeds the maximum size of 3MB.`);
+          this.uploadMessage = `File ${file.name} exceeds the maximum size of 3MB.`;
+          continue;
+        }
+
         try {
           await this.fileUploadService.uploadFile( file );
           console.log(`File uploaded: ${ file.name }`);
@@ -103,6 +113,13 @@ export class FileUploaderComponent {
       if ( !this.IS_DEV_MODE ) {
         this.setLastUploadTime(); // Set last upload timestamp in localStorage
       }
+
+      // After uploading, change the message and start the timer
+      this.uploadMessage = 'Uploading...';
+      setTimeout(() => {
+        this.isLoading = false; // Hide loading spinner
+        this.uploadMessage = 'Completed! Interact with the chatbot'; // Update message
+      }, 120000); // Wait for 1 minute
     } else {
       this.uploadMessage = 'You have reached the maximum file limit or need to wait to upload again.';
     }

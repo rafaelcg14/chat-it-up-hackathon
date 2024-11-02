@@ -19,3 +19,7 @@
 
 <button type="button" (click)="onUploadClick()" [disabled]="files.length === 0">Upload Files</button>
 <p *ngIf="uploadMessage">{{ uploadMessage }}</p>
+
+<div *ngIf="uploadMessage" class="alert alert-warning">{{ uploadMessage }}</div>
+
+<loading-spinner *ngIf="isLoading" [message]="uploadMessage"></loading-spinner>
