@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { FormControl } from '@angular/forms';
+import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 
 import { TranscriptionService } from '../../../services/transcription.service';
 
@@ -9,19 +11,27 @@ import { TranscriptionService } from '../../../services/transcription.service';
 })
 export class UrlFormComponent {
 
-  public videoUrl: string = '';
+  public videoUrlControl = new FormControl('');
   public loading: boolean = false;
   public transcriptionAvailable: boolean = false;
   public transcriptionUrl: string = '';
+  public validVideoUrl: string | null = null;
 
-  constructor ( private transcriptionService: TranscriptionService ) {}
+  constructor ( private transcriptionService: TranscriptionService ) {
+    this.videoUrlControl.valueChanges.pipe(
+      debounceTime(500),
+      distinctUntilChanged()
+    ).subscribe( ( url ) => {
+      this.validVideoUrl = this.isValidYouTubeUrl(url!) ? url : null;
+    } );
+  }
 
   onSubmit(): void {
-    if ( this.videoUrl ) {
+    if ( this.videoUrlControl.value ) {
       this.loading = true;
       this.transcriptionAvailable = false;
 
-      this.transcriptionService.transcribeVideo( this.videoUrl ).subscribe({
+      this.transcriptionService.transcribeVideo( this.videoUrlControl.value ).subscribe({
         next: ( resp ) => {
           this.transcriptionUrl = resp.transcriptionUrl;
           this.transcriptionAvailable = true;
@@ -43,6 +53,12 @@ export class UrlFormComponent {
       link.download = 'transcription.txt';
       link.click();
     }
+  }
+
+  private isValidYouTubeUrl( url: string ): boolean {
+    const pattern = /^(https?:\/\/)?(www\.)?(youtube\.com|youtu\.?be)\/.+$/;
+
+    return pattern.test( url );
   }
 
 }

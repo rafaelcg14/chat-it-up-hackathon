@@ -1,25 +1,31 @@
 <div class="main-container" #targetSection>
   <h1>AI Features</h1>
-  <!-- <p class="solution-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae, pariatur commodi. Ut consequatur, delectus eos culpa architecto, consectetur ipsum vitae accusantium dicta deleniti doloribus quo necessitatibus animi veritatis odio quasi!</p> -->
   <div class="explaination">
     <h4>How it Works?</h4>
-    <ol>
-      <li>Choose the feature you require <strong>(Video URL Feature or File Upload Feature)</strong>.</li>
-      <li>Submit or upload your <strong>url</strong> or <strong>file</strong>, and wait for the process to finish.</li>
+    <ol class="steps">
+      <li>Choose the feature you require (<strong>Video URL Feature</strong> or <strong>File Upload Feature</strong>).</li>
+      <li>Submit or upload your <strong>URL</strong> or <strong>file</strong>, and wait for the process to finish.</li>
       <li>Once the process is finished, you may interact with our chatbot about the given information.</li>
     </ol>
+    <h4>Limitations</h4>
+    <ul class="limitations">
+      <li><strong>Allowed document extensions</strong>: .pdf, doc, .md, .txt. (Only readable texts)</li>
+      <li><strong>Maximum number of files to upload</strong>: Up to 3</li>
+      <li><strong>Maximum file size</strong>: Up to 6 MB</li>
+    </ul>
   </div>
   <div class="solution-container">
     <div class="left-section">
-      <h3 class="feature-title">Video URL Feature</h3>
-      <p>Insert your YouTube URL below:</p>
-      <url-form></url-form>
       <h3 class="feature-title">File Upload Feature</h3>
       <p>Upload your own documents.</p>
-      <p>(Allowed files: .pdf, .doc with max.size: 10 MB)</p>
       <app-file-uploader></app-file-uploader>
     </div>
     <div class="right-section">
+      <h3 class="feature-title">Video URL Feature</h3>
+      <p>Insert your YouTube URL below:</p>
+      <url-form></url-form>
+    </div>
+    <div class="chatbot-section">
       <h3 class="feature-chatbot-title">Interact With Our Chatbot</h3>
       <app-chatbot></app-chatbot>
     </div>

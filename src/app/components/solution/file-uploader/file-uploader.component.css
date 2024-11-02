@@ -40,6 +40,7 @@
 .file-item {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   padding: 8px 12px;
   background-color: #f9f9f9;
   border-radius: 4px;

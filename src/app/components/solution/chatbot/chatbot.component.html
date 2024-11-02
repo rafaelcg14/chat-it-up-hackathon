@@ -6,15 +6,20 @@
         <div class="avatar bot-avatar">
           <img src="bot.png" alt="Bot Avatar" />
         </div>
-        <div class="message-content bot-message-text">{{ message.text }}</div>
+        <div class="message-content bot-message-text">
+          <p>{{ message.text }}</p>
+          <ul *ngIf="message.references && message.references.length > 0" class="reference-titles">
+            <li *ngFor="let title of message.references; let i = index" class="reference-title">{{ i + 1 }}. {{ title }}</li>
+          </ul>
+          <!-- <div *ngIf="message.references && message.references.length > 0" class="reference-titles">
+            <span *ngFor="let title of message.references; let i = index" class="reference-title">{{ i + 1 }}. {{ title }}</span>
+          </div> -->
+        </div>
       </div>
 
       <!-- User Message -->
       <div *ngIf="message.user" class="user-message">
         <div class="message-content user-message-text">{{ message.text }}</div>
-        <div class="avatar user-avatar">
-          <img src="user.png" alt="User Avatar" />
-        </div>
       </div>
     </div>
   </div>

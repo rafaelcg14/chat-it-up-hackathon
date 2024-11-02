@@ -24,7 +24,7 @@ export class ChatbotComponent implements OnInit, AfterViewChecked {
     // Initial message from the chatbot
     this.messages.push(
       {
-        text: "Hello, I'm ChatItUp! How can I help you today?",
+        text: "Hello, I'm Chat It Up! How can I help you today?",
         user: false
       }
     );
@@ -54,7 +54,10 @@ export class ChatbotComponent implements OnInit, AfterViewChecked {
     // Send message to the chatbot service
     this.chatbotService.sendMessage( userMessage ).subscribe(
       resp => {
-        this.messages.push( { text: resp.response, user: false } );
+        const chatResponse = resp.response.chat_response
+        const referenceTitles = resp.response.reference_titles
+
+        this.messages.push( { text: chatResponse, user: false, references: referenceTitles } );
         this.isLoading = false;
       },
       err => {

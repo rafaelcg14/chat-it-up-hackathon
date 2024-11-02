@@ -1,10 +1,9 @@
 <div class="form-container">
-  <!-- <h2>YouTube Video Transcription</h2> -->
   <form (ngSubmit)="onSubmit()">
     <div class="input-group">
       <input
         type="text"
-        [(ngModel)]="videoUrl"
+        [formControl]="videoUrlControl"
         name="videoUrl"
         placeholder="Enter YouTube video URL"
         required
@@ -14,8 +13,28 @@
     </div>
   </form>
 
+  <!-- Video Preview Rectangle -->
+  <div class="video-preview">
+    <div *ngIf="validVideoUrl; else placeholder" class="video-preview">
+      <iframe
+        [src]="validVideoUrl | safeUrl"
+        width="100%"
+        height="300"
+        frameborder="0"
+        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen
+      ></iframe>
+
+    </div>
+    <ng-template #placeholder>
+      <p>Enter a valid YouTube URL to preview the video</p>
+    </ng-template>
+  </div>
+
   <!-- Loader -->
-  <div *ngIf="loading" class="loader"></div>
+  <div *ngIf="loading" class="loader-container">
+    <loading-spinner message="Processing information"></loading-spinner>
+  </div>
 
   <!-- Transcription download button -->
   <div *ngIf="transcriptionAvailable" class="download-container">

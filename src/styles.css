@@ -9,12 +9,13 @@
 
 :root {
   --color-primary: #2244D9;
-  --color-secondary: #109ed6;
+  --color-secondary: #217cc7;
   --color-aux: #4379DD;
   --color-secondary-hover: #4c70b3;
   --light-color-primary: #b0ccf7;
   --x-light-color-primary: #d8e6fc;
-  --light-color-secondary: #e3f5fa;
+  --light-color-secondary: #c8e7f0;
+  --x-light-color-secondary: #ebf7fa;
   --color-text-primary: #111;
   --color-text-secondary: #fff;
 }

@@ -5,16 +5,10 @@
   text-align: center;
 }
 
-h2 {
-  color: #333;
-  font-weight: bold;
-}
-
-/* Input styling */
 .input-group {
   display: flex;
   justify-content: space-between;
-  margin-top: 1.5rem;
+  margin-block: 1.5rem;
 }
 
 .url-input {
@@ -34,7 +28,6 @@ h2 {
   margin-left: 10px;
   cursor: pointer;
   font-size: 1rem;
-  /* font-weight: 700; */
   letter-spacing: 1px;
 }
 
@@ -42,20 +35,41 @@ h2 {
   background-color: #0056b3;
 }
 
-/* Loader styling */
-.loader {
-  border: 4px solid #f3f3f3;
-  border-radius: 50%;
-  border-top: 4px solid #007BFF;
-  width: 40px;
-  height: 40px;
-  animation: spin 1s linear infinite;
-  margin: 20px auto;
+/* Video Preview */
+.video-preview {
+  /* margin-top: 20px; */
+  /* padding: 10px; */
+  /* border: 1px solid #ddd; */
+  /* border-radius: 4px; */
+  /* height: 220px; */
+  /* display: flex; */
+  /* align-items: center; */
+  /* justify-content: center; */
+  background-color: #f9f9f9;
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%; /* 16:9 aspect ratio */
+  height: 0;
+  overflow: hidden;
 }
 
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+.video-preview iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.video-preview p {
+  color: #666;
+  margin-top: 25%;
+}
+
+/* Loader styling */
+.loader-container {
+  margin-top: 20px;
 }
 
 /* Download button styling */
@@ -76,6 +90,7 @@ h2 {
 .download-btn:hover {
   background-color: #218838;
 }
+
 
 @media screen and (max-width: 600px) {
   .input-group {
