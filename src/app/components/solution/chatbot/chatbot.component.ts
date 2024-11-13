@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef, AfterViewChecked } from '@angular/core';
 
 import { ChatbotService } from '../../../services/chatbot.service';
+import { UploadStatusService } from '../../../services/upload.status.service';
 
 import { ChatMessage } from '../../../interfaces/chatbot.interface';
 
@@ -17,8 +18,13 @@ export class ChatbotComponent implements OnInit, AfterViewChecked {
   messages: ChatMessage[] = [];
   userInput: string = '';
   isLoading: boolean = false;
+  isUploadInProgress: boolean = false;
+  isInitialDisabled: boolean = true;
 
-  constructor( private chatbotService: ChatbotService ) { }
+  constructor(
+    private chatbotService: ChatbotService,
+    private uploadStatusService: UploadStatusService
+  ) { }
 
   ngOnInit(): void {
     // Initial message from the chatbot
@@ -28,6 +34,14 @@ export class ChatbotComponent implements OnInit, AfterViewChecked {
         user: false
       }
     );
+
+    setTimeout(() => {
+      this.isInitialDisabled = false;
+    }, 2000);
+
+    this.uploadStatusService.uploadStatus$.subscribe( isUploading => {
+      this.isUploadInProgress = isUploading;
+    } );
   }
 
   ngAfterViewChecked(): void {
@@ -41,7 +55,7 @@ export class ChatbotComponent implements OnInit, AfterViewChecked {
   }
 
   sendMessage(): void {
-    if ( !this.userInput.trim() ) return;
+    if ( !this.userInput.trim() || this.isUploadInProgress || this.isInitialDisabled ) return;
 
     // Add user message to chat
     this.messages.push( { text: this.userInput, user: true } );

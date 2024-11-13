@@ -8,7 +8,7 @@ import { LoadingSpinnerComponent } from './components/loading-spinner/loading-sp
 @NgModule({
   declarations: [
     SafeUrlPipe,
-    LoadingSpinnerComponent,
+    LoadingSpinnerComponent
   ],
   imports: [
     CommonModule,

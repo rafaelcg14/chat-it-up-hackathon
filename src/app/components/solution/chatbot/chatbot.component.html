@@ -11,9 +11,6 @@
           <ul *ngIf="message.references && message.references.length > 0" class="reference-titles">
             <li *ngFor="let title of message.references; let i = index" class="reference-title">{{ i + 1 }}. {{ title }}</li>
           </ul>
-          <!-- <div *ngIf="message.references && message.references.length > 0" class="reference-titles">
-            <span *ngFor="let title of message.references; let i = index" class="reference-title">{{ i + 1 }}. {{ title }}</span>
-          </div> -->
         </div>
       </div>
 
@@ -26,8 +23,17 @@
 
   <!-- Input area -->
   <div class="input-area">
-    <textarea [(ngModel)]="userInput" placeholder="Type a message..." (keyup.enter)="sendMessage()"></textarea>
-    <button (click)="sendMessage()">
+    <textarea
+      [(ngModel)]="userInput"
+      placeholder="Type a message..."
+      (keyup.enter)="sendMessage()"
+      [disabled]="isInitialDisabled || isUploadInProgress"
+    >
+    </textarea>
+    <button
+      (click)="sendMessage()"
+      [disabled]="isInitialDisabled || isUploadInProgress"
+    >
       <i class="send-icon">➤</i>
     </button>
   </div>
